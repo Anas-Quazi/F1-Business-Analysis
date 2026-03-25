@@ -85,3 +85,4 @@ ALTER TABLE engine_suppliers
 ADD COLUMN fuel_supplier_id INT,
 ADD COLUMN fuel_supply_fee_million DECIMAL(10,2),
 ADD FOREIGN KEY (fuel_supplier_id) REFERENCES fuel_suppliers(supplier_id);
+
