@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS fuel_suppliers (
     contract_end YEAR
 );
 
+--? connect engine manufacturers with fuel suppliers
 ALTER TABLE engine_suppliers
 ADD COLUMN fuel_supplier_id INT,
 ADD COLUMN fuel_supply_fee_million DECIMAL(10,2),
