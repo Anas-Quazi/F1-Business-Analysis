@@ -87,3 +87,84 @@ ADD COLUMN fuel_supplier_id INT,
 ADD COLUMN fuel_supply_fee_million DECIMAL(10,2),
 ADD FOREIGN KEY (fuel_supplier_id) REFERENCES fuel_suppliers(supplier_id);
 
+--^ drivers 
+CREATE TABLE IF NOT EXISTS drivers (
+    driver_id INT AUTO_INCREMENT PRIMARY KEY,
+    driver_name VARCHAR(100) NOT NULL,
+    nationality VARCHAR(50) NOT NULL,
+    constructor_id INT NOT NULL,
+    salary_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR,
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+ALTER TABLE drivers
+ADD COLUMN driver_role VARCHAR(50) DEFAULT 'Race Driver';
+
+--^ Team management
+CREATE TABLE IF NOT EXISTS team_management (
+    management_id INT AUTO_INCREMENT PRIMARY KEY,
+    constructor_id INT NOT NULL,
+    principal_name VARCHAR(100) NOT NULL,
+    principal_salary_million DECIMAL(10,2),
+    management_cost_million DECIMAL(10,2),
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+--^ other expenses
+CREATE TABLE IF NOT EXISTS factory_expenses (
+    expense_id INT AUTO_INCREMENT PRIMARY KEY,
+    constructor_id INT NOT NULL,
+    factory_cost_million DECIMAL(10,2),      -- factory operations, utilities
+    wind_tunnel_cost_million DECIMAL(10,2),  -- aerodynamic testing
+    rd_cost_million DECIMAL(10,2),           -- research & development
+    logistics_cost_million DECIMAL(10,2),    -- shipping cars/equipment to races
+    total_expense_million DECIMAL(10,2),     -- sum of all above
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+--~ Sponsors 
+
+--^ Title sponsor
+CREATE TABLE IF NOT EXISTS title_sponsors (
+    sponsor_id INT AUTO_INCREMENT PRIMARY KEY,
+    sponsor_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50),
+    partnership_type VARCHAR(50) DEFAULT 'Title Sponsor',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR,
+    constructor_id INT NOT NULL,
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+--^ Pricipal partners
+CREATE TABLE IF NOT EXISTS principal_partners (
+    sponsor_id INT AUTO_INCREMENT PRIMARY KEY,
+    sponsor_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50),
+    partnership_type VARCHAR(50) DEFAULT 'Principal Partner',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR,
+    constructor_id INT NOT NULL,
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+--^ Team Partners (all others)
+CREATE TABLE IF NOT EXISTS team_partners (
+    partner_id INT AUTO_INCREMENT PRIMARY KEY,
+    partner_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50),
+    partnership_type VARCHAR(50) DEFAULT 'Team Partner',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR,
+    constructor_id INT NOT NULL,
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
