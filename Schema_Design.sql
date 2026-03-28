@@ -117,14 +117,14 @@ CREATE TABLE IF NOT EXISTS factory_expenses (
     expense_id INT AUTO_INCREMENT PRIMARY KEY,
     constructor_id INT NOT NULL,
     factory_cost_million DECIMAL(10,2),      -- factory operations, utilities
-    wind_tunnel_cost_million DECIMAL(10,2),  -- aerodynamic testing
-    rd_cost_million DECIMAL(10,2),           -- research & development
-    logistics_cost_million DECIMAL(10,2),    -- shipping cars/equipment to races
-    total_expense_million DECIMAL(10,2),     -- sum of all above
+    wind_tunnel_cost_million DECIMAL(10,2),  
+    rd_cost_million DECIMAL(10,2),           
+    logistics_cost_million DECIMAL(10,2),    
+    total_expense_million DECIMAL(10,2),     
     FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
 );
 
---~ Sponsors 
+--~ Sponsors (Team)
 
 --^ Title sponsor
 CREATE TABLE IF NOT EXISTS title_sponsors (
@@ -165,6 +165,55 @@ CREATE TABLE IF NOT EXISTS team_partners (
     contract_start YEAR,
     contract_end YEAR,
     constructor_id INT NOT NULL,
+    FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
+);
+
+--~ sponsors (F1  level)
+--^ Global partners
+CREATE TABLE IF NOT EXISTS global_partners (
+    partner_id INT AUTO_INCREMENT PRIMARY KEY,
+    partner_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50),
+    partnership_type VARCHAR(50) DEFAULT 'Global Partner',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR
+);
+
+--^ official suppliers
+CREATE TABLE IF NOT EXISTS official_suppliers (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50),
+    partnership_type VARCHAR(50) DEFAULT 'Official Supplier',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR
+);
+ 
+--^ media broadcasters
+CREATE TABLE IF NOT EXISTS media_broadcast_partners (
+    partner_id INT AUTO_INCREMENT PRIMARY KEY,
+    partner_name VARCHAR(100) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    category VARCHAR(50) DEFAULT 'Media',
+    partnership_type VARCHAR(50) DEFAULT 'Broadcast Partner',
+    deal_value_million DECIMAL(10,2),
+    contract_start YEAR,
+    contract_end YEAR
+);
+
+--~ prize money distribution
+CREATE TABLE IF NOT EXISTS f1_prize_money (
+    prize_id INT AUTO_INCREMENT PRIMARY KEY,
+    constructor_id INT NOT NULL,
+    position_bonus_million DECIMAL(10,2),
+    heritage_bonus_million DECIMAL(10,2),
+    long_standing_bonus_million DECIMAL(10,2),
+    total_prize_million DECIMAL(10,2) GENERATED ALWAYS AS 
+        (position_bonus_million + heritage_bonus_million + long_standing_bonus_million) STORED,
     FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
 );
 
