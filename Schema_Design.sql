@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS engine_suppliers (
     supplier_name VARCHAR(100) NOT NULL,
     country VARCHAR(50) NOT NULL,
     category VARCHAR(50) DEFAULT 'Automotive'
-)
+);
 
 --? constructor 
 CREATE TABLE IF NOT EXISTS constructors (
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS team_management (
 CREATE TABLE IF NOT EXISTS factory_expenses (
     expense_id INT AUTO_INCREMENT PRIMARY KEY,
     constructor_id INT NOT NULL,
-    factory_cost_million DECIMAL(10,2),      -- factory operations, utilities
+    factory_cost_million DECIMAL(10,2),      
     wind_tunnel_cost_million DECIMAL(10,2),  
     rd_cost_million DECIMAL(10,2),           
     logistics_cost_million DECIMAL(10,2),    
@@ -242,3 +242,4 @@ FROM (
 
     FROM constructors c
 ) AS summary;
+
