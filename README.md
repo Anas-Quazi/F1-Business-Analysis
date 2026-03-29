@@ -1,5 +1,5 @@
 # 🏎️📊 F1 Business Analysis
-### A Relational Database Project | MySQL | 2024 Season
+### A Relational Database Project | MySQL | 2026 Season
 
 > Modelling the financial ecosystem of Formula 1 — from title sponsorships and engine supply deals to driver contracts and factory expenses — using relational database design and advanced SQL analysis.
 
@@ -32,21 +32,23 @@ The `constructors` table serves as the **central entity**. Every other table ref
 
 | Table | Description |
 |---|---|
-| `constructors` | All 10 F1 teams — name, nationality, headquarters |
+| `constructors` | All 11 F1 teams — name, nationality, headquarters |
 | `drivers` | Driver roster, salaries, and contract durations |
-| `team_principal` | Principal per constructor with compensation |
+| `team_management` | Principals and team management expenses |
 | `engine_suppliers` | Engine supply agreements and annual fees |
 | `fuel_suppliers` | Fuel and lubricant partnerships |
+| `tyre_suppliers` | tyre supplier partnership |
 | `title_sponsors` | Primary commercial sponsors and deal values |
-| `tech_sponsors` | Technology partners (hardware, software, infrastructure) |
-| `ai_partners` | AI and cloud computing partnerships |
+| `team partners` | other partner companies |
 | `factory_expenses` | Annual operational costs broken down by category |
+| `governing bodies` | governing and organizing bodies |
+| `global_partners` | sponsorship for goevrning bodies |
 
 ---
 
 ## 📑 Schema Diagram
 
-<img src="Diagrams/schema _diagram.jpg" alt="Schema Diagram" width="700">
+<img src="Diagrams/schema _diagram.jpg" alt="Schema Diagram" width="600">
 
 ---
 
