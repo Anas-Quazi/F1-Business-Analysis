@@ -44,6 +44,12 @@ The `constructors` table serves as the **central entity**. Every other table ref
 
 ---
 
+## 📑 Schema Diagram
+
+<img src="Diagrams/schema _diagram.jpg" alt="Schema Diagram" width="700">
+
+---
+
 ## ⚙️ How to Run
 
 Execute the files in the following order:
