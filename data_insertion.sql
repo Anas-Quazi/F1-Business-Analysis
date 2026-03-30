@@ -50,7 +50,7 @@ INSERT INTO constructors (team_name, full_name, country, constructor_budget_mill
 ('Audi', 'Audi Formula One Team', 'German', 445.00, 5, 1),
 ('Cadillac', 'Cadillac Formula One Team', 'American', 290.00, 2, 1); 
 
---& connect to engine suppliers via junction table
+--& 6. connect to engine suppliers via junction table
 INSERT INTO engine_supply_contracts (supplier_id, constructor_id, supply_fee_million, is_external, contract_start) VALUES
 (1, 1, 0.00, FALSE, 2010),
 (1, 4, 15.00, TRUE, 2021),
@@ -64,7 +64,7 @@ INSERT INTO engine_supply_contracts (supplier_id, constructor_id, supply_fee_mil
 (4, 5, 0.00, FALSE, 2026),
 (5, 10, 0.00, FALSE, 2026);
 
---~ drivers
+--~ 7. drivers
 INSERT INTO drivers 
     (driver_name, country, constructor_id, salary_million, 
      contract_start, contract_end)
@@ -113,7 +113,7 @@ VALUES
     ('Jack Doohan', 'Australian', 9, 1.50, 2025, 2026);
 
 
---~ team management
+--~ 8. team management
 INSERT INTO team_management 
     (constructor_id, principal_name, principal_salary_million, management_cost_million)
 VALUES
@@ -129,7 +129,7 @@ VALUES
     (10, 'Jonathan Wheatley', 3.50, 36.00), 
     (11, 'Graeme Lowdon', 1.50, 20.00);  
 
---~ other factory expenses
+--~ 9. other factory expenses
 INSERT INTO factory_expenses 
     (constructor_id, factory_cost_million, wind_tunnel_cost_million, 
      rd_cost_million, logistics_cost_million, total_expense_million)
@@ -145,3 +145,153 @@ VALUES
     (9, 28.00, 15.00, 75.00, 24.00, 142.00),
     (10, 42.00, 23.00, 102.00, 33.00, 200.00),
     (11, 36.00, 19.00, 90.00, 27.00, 172.00);
+
+--todo 10. Title Sponsors Table for the 2026 Season
+INSERT INTO title_sponsors (sponsor_name, country, category, deal_value_million, contract_start, contract_end, constructor_id) VALUES
+('Petronas', 'Malaysia', 'Energy', 80.00, 2010, 2029, 1),
+('HP', 'United States', 'Technology', 100.00, 2024, 2027, 2),
+('Oracle', 'United States', 'Technology', 110.00, 2022, 2030, 3),
+('Mastercard', 'United States', 'Finance', 100.00, 2026, 2035, 4),
+('Aramco', 'Saudi Arabia', 'Energy', 75.00, 2024, 2028, 5),
+('BWT', 'Austria', 'Water Treatment', 30.00, 2022, 2026, 6),
+('Atlassian', 'Australia', 'Technology', 40.00, 2025, 2028, 7),
+('Visa Cash App', 'United States', 'Finance', 35.00, 2024, 2026, 8),
+('Toyota Gazoo Racing', 'Japan', 'Automotive', 45.00, 2026, 2028, 9),
+('Revolut', 'United Kingdom', 'Finance', 75.00, 2026, 2029, 10),
+('Tommy Hilfiger', 'United States', 'Apparel', 15.00, 2026, 2030, 11);
+
+--todo 11. principal partners
+INSERT INTO principal_partners (sponsor_name, country, category, deal_value_million, contract_start, constructor_id) VALUES
+
+('INEOS', 'United Kingdom', 'Chemicals', 25.00, 2020, 1),
+('CrowdStrike', 'United States', 'Cybersecurity', 25.00, 2019, 1),
+('Microsoft', 'United States', 'Technology', 50.00, 2026, 1),
+('UniCredit', 'Italy', 'Finance', 30.00, 2023, 2),
+('Richard Mille', 'Switzerland', 'Luxury', 25.00, 2021, 2),
+('DXC Technology', 'United States', 'Technology', 20.00, 2019, 2),
+('IBM', 'United States', 'Technology', 18.00, 2023, 2),
+('Tag Heuer', 'Switzerland', 'Luxury', 20.00, 2016, 3),
+('AT&T', 'United States', 'Telecommunications', 25.00, 2023, 3),
+('Hard Rock International', 'United States', 'Hospitality', 18.00, 2023, 3),
+('Siemens', 'Germany', 'Technology', 15.00, 2021, 3),
+('Ford', 'United States', 'Automotive', 30.00, 2026, 3),
+('Google Chrome', 'United States', 'Technology', 35.00, 2023, 4),
+('Dell Technologies', 'United States', 'Technology', 20.00, 2020, 4),
+('OKX', 'Seychelles', 'Finance', 25.00, 2022, 4),
+('A Better Tomorrow', 'United Kingdom', 'Consumer Goods', 15.00, 2019, 4),
+('Cognizant', 'United States', 'Technology', 20.00, 2021, 5),
+('JCB', 'United Kingdom', 'Manufacturing', 15.00, 2023, 5),
+('Honda', 'Japan', 'Automotive', 30.00, 2026, 5),
+('Qatar Airways', 'Qatar', 'Aviation', 20.00, 2023, 6),
+('Boeing', 'United States', 'Aerospace', 15.00, 2023, 6),
+('Gulf', 'United Kingdom', 'Energy', 15.00, 2022, 7),
+('Barclays', 'United Kingdom', 'Finance', 20.00, 2026, 7),
+('Kraken', 'United States', 'Finance', 10.00, 2024, 7),
+('Randstad', 'Netherlands', 'Recruitment', 10.00, 2020, 8),
+('Ford', 'United States', 'Automotive', 12.00, 2026, 8),
+('Mphasis', 'India', 'Technology', 8.00, 2024, 9),
+('BP Castrol', 'United Kingdom', 'Energy', 20.00, 2026, 10),
+('Adidas', 'Germany', 'Apparel', 38.00, 2026, 10),
+('Visit Qatar', 'Qatar', 'Tourism', 15.00, 2026, 10),
+('General Motors', 'United States', 'Automotive', 30.00, 2026, 11),
+('TWG AI', 'United States', 'Technology', 15.00, 2026, 11),
+('Tommy Hilfiger', 'United States', 'Fashion', 12.00, 2026, 11);
+
+--todo 12. Team Partners
+INSERT INTO team_partners (partner_name, country, category, deal_value_million, contract_start, constructor_id) VALUES
+-- Mercedes (constructor_id = 1)
+('Snapdragon', 'United States', 'Technology', 15.00, 2023, 1),
+('TeamViewer', 'Germany', 'Technology', 12.00, 2021, 1),
+('UBS', 'Switzerland', 'Finance', 10.00, 2021, 1),
+('HPE', 'United States', 'Technology', 10.00, 2022, 1),
+('Adidas', 'Germany', 'Apparel', 8.00, 2022, 1),
+('SAP', 'Germany', 'Technology', 8.00, 2018, 1),
+('Meta AI', 'United States', 'Technology', 7.00, 2023, 1),
+('WhatsApp', 'United States', 'Technology', 5.00, 2023, 1),
+('AMD', 'United States', 'Technology', 6.00, 2022, 1),
+('Marriott Bonvoy', 'United States', 'Hospitality', 5.00, 2022, 1),
+('IWC Schaffhausen', 'Switzerland', 'Luxury', 8.00, 2020, 1),
+('G42', 'United Arab Emirates', 'Technology', 10.00, 2023, 1),
+('Solera', 'United States', 'Technology', 6.00, 2022, 1),
+('PepsiCo', 'United States', 'Beverages', 7.00, 2026, 1),
+('Nu', 'Brazil', 'Finance', 5.00, 2026, 1),
+-- Ferrari (constructor_id = 2)
+('Ray-Ban', 'Italy', 'Luxury', 8.00, 2020, 2),
+('Puma', 'Germany', 'Apparel', 10.00, 2014, 2),
+('Brembo', 'Italy', 'Automotive', 5.00, 2015, 2),
+('Technogym', 'Italy', 'Fitness', 4.00, 2018, 2),
+('Vistajet', 'Malta', 'Aviation', 6.00, 2019, 2),
+('IBM', 'United States', 'Technology', 10.00, 2023, 2),
+('AON', 'United Kingdom', 'Finance', 6.00, 2021, 2),
+('Peroni', 'Italy', 'Beverages', 4.00, 2019, 2),
+('WHOOP', 'United States', 'Technology', 5.00, 2026, 2),
+('BingX', 'Singapore', 'Finance', 4.00, 2026, 2),
+-- Red Bull (constructor_id = 3)
+('Mobil 1', 'United States', 'Energy', 8.00, 2016, 3),
+('Heineken', 'Netherlands', 'Beverages', 10.00, 2017, 3),
+('Castore', 'United Kingdom', 'Apparel', 5.00, 2022, 3),
+('Hexagon', 'Sweden', 'Technology', 6.00, 2021, 3),
+('DMG Mori', 'Germany', 'Manufacturing', 4.00, 2020, 3),
+('1Password', 'Canada', 'Technology', 5.00, 2023, 3),
+('DAMAC Properties', 'United Arab Emirates', 'Real Estate', 8.00, 2026, 3),
+('Pepe Jeans', 'United Kingdom', 'Apparel', 4.00, 2021, 3),
+-- McLaren (constructor_id = 4)
+('Splunk', 'United States', 'Technology', 8.00, 2021, 4),
+('Richard Mille', 'Switzerland', 'Luxury', 12.00, 2021, 4),
+('Hilton', 'United States', 'Hospitality', 6.00, 2021, 4),
+('Deloitte', 'United Kingdom', 'Finance', 7.00, 2021, 4),
+('Monster Energy', 'United States', 'Beverages', 8.00, 2020, 4),
+('Workday', 'United States', 'Technology', 6.00, 2022, 4),
+('Goldman Sachs', 'United States', 'Finance', 8.00, 2023, 4),
+('LEGO', 'Denmark', 'Consumer Goods', 5.00, 2023, 4),
+('Etihad Airlines', 'United Arab Emirates', 'Aviation', 10.00, 2026, 4),
+('Puma', 'Germany', 'Apparel', 6.00, 2026, 4),
+('Gemini', 'United States', 'Finance', 8.00, 2026, 4),
+-- Aston Martin (constructor_id = 5)
+('NetApp', 'United States', 'Technology', 6.00, 2022, 5),
+('Boss', 'Germany', 'Fashion', 5.00, 2022, 5),
+('Valvoline', 'United States', 'Energy', 4.00, 2022, 5),
+('CoreWeave', 'United States', 'Technology', 8.00, 2025, 5),
+('Cohere', 'Canada', 'Technology', 7.00, 2026, 5),
+('Coinbase', 'United States', 'Finance', 6.00, 2023, 5),
+('Glenfiddich', 'United Kingdom', 'Beverages', 4.00, 2022, 5),
+('Breitling', 'Switzerland', 'Luxury', 5.00, 2026, 5),
+-- Alpine (constructor_id = 6)
+('Eni', 'Italy', 'Energy', 12.00, 2021, 6),
+('MSC Cruises', 'Switzerland', 'Hospitality', 8.00, 2022, 6),
+('H Moser and Cie', 'Switzerland', 'Luxury', 5.00, 2022, 6),
+('Castore', 'United Kingdom', 'Apparel', 4.00, 2023, 6),
+('eToro', 'Cyprus', 'Finance', 5.00, 2026, 6),
+('Mobilize Financial Services', 'France', 'Finance', 4.00, 2022, 6),
+-- Williams (constructor_id = 7)
+('Duracell', 'United States', 'Consumer Goods', 5.00, 2023, 7),
+('Komatsu', 'Japan', 'Manufacturing', 4.00, 2024, 7),
+('BNY', 'United States', 'Finance', 6.00, 2026, 7),
+('Zoox', 'United States', 'Technology', 4.00, 2023, 7),
+('Girard Perregaux', 'Switzerland', 'Luxury', 5.00, 2026, 7),
+('Sparco', 'Italy', 'Automotive', 3.00, 2026, 7),
+-- Racing Bulls (constructor_id = 8)
+('Cash App', 'United States', 'Finance', 12.00, 2024, 8),
+('Hugo', 'Germany', 'Fashion', 5.00, 2024, 8),
+('Tudor', 'Switzerland', 'Luxury', 6.00, 2022, 8),
+('Siemens', 'Germany', 'Technology', 5.00, 2021, 8),
+('Dynatrace', 'United States', 'Technology', 4.00, 2023, 8),
+-- Haas (constructor_id = 9)
+('Haas Automation', 'United States', 'Manufacturing', 15.00, 2016, 9),
+('Alpinestars', 'Italy', 'Apparel', 3.00, 2016, 9),
+('Castore', 'United Kingdom', 'Apparel', 4.00, 2026, 9),
+('Singha Corporation', 'Thailand', 'Beverages', 3.00, 2026, 9),
+('CommScope', 'United States', 'Technology', 4.00, 2023, 9),
+-- Audi (constructor_id = 10)
+('Gillette', 'United States', 'Consumer Goods', 6.00, 2026, 10),
+('Visit Qatar', 'Qatar', 'Tourism', 8.00, 2026, 10),
+('NinjaOne', 'United States', 'Technology', 5.00, 2026, 10),
+('ElevenLabs', 'United States', 'Technology', 4.00, 2026, 10),
+('Camozzi', 'Italy', 'Manufacturing', 3.00, 2024, 10),
+('World of Hyatt', 'United States', 'Hospitality', 5.00, 2026, 10),
+-- Cadillac (constructor_id = 11)
+('Claro', 'Mexico', 'Telecommunications', 8.00, 2026, 11),
+('Core Scientific', 'United States', 'Technology', 6.00, 2026, 11),
+('IFS', 'Sweden', 'Technology', 5.00, 2026, 11),
+('Jim Beam', 'United States', 'Beverages', 4.00, 2026, 11),
+('Tenneco', 'United States', 'Automotive', 5.00, 2026, 11);
