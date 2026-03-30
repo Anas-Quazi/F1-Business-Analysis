@@ -295,3 +295,86 @@ INSERT INTO team_partners (partner_name, country, category, deal_value_million, 
 ('IFS', 'Sweden', 'Technology', 5.00, 2026, 11),
 ('Jim Beam', 'United States', 'Beverages', 4.00, 2026, 11),
 ('Tenneco', 'United States', 'Automotive', 5.00, 2026, 11);
+
+
+--* 13. Global partners
+INSERT INTO global_partners 
+    (partner_name, country, category, deal_value_million, 
+     contract_start, contract_end)
+VALUES
+    ('Aramco', 'Saudi Arabia', 'Energy', 80.00, 2022, 2027),
+    ('AWS (Amazon Web Services)', 'USA', 'Technology', 65.00, 2023, 2028),
+    ('Qatar Airways', 'Qatar', 'Airline', 75.00, 2023, 2027),
+    ('MSC Cruises', 'Switzerland', 'Travel & Hospitality', 35.00, 2022, 2030),
+    ('LVMH', 'France', 'Luxury', 150.00, 2025, 2035),
+    ('Salesforce', 'USA', 'Technology', 55.00, 2024, 2027),
+    ('DHL', 'Germany', 'Logistics', 50.00, 2019, 2026),
+    ('Lenovo', 'China', 'Technology', 45.00, 2024, 2027),
+    ('Allwyn', 'Czech Republic', 'Lottery & Entertainment', 40.00, 2025, 2030),
+    ('Standard Chartered', 'UK', 'Banking', 35.00, 2026, 2029),
+    ('Crypto.com', 'Singapore', 'Cryptocurrency', 50.00, 2022, 2028);
+
+--* 14. official partners
+INSERT INTO official_suppliers 
+(supplier_name, country, category, deal_value_million, contract_start, contract_end)
+VALUES
+('Louis Vuitton', 'France', 'Luxury Goods', 75.00, 2024, 2034),
+('TAG Heuer', 'Switzerland', 'Watches', 45.00, 2016, 2030),
+('Moët Hennessy', 'France', 'Beverages', 55.00, 2021, 2030),
+('American Express', 'USA', 'Financial Services', 65.00, 2023, 2030),
+('PepsiCo', 'USA', 'Food & Beverage', 60.00, 2023, 2030),
+('Crypto.com', 'Singapore', 'Cryptocurrency', 100.00, 2021, 2030),
+('Standard Chartered', 'UK', 'Banking', 50.00, 2010, 2030),
+('Santander', 'Spain', 'Banking', 40.00, 2007, 2025),
+('Globant', 'Argentina', 'IT Services', 25.00, 2021, 2026),
+('Allwyn', 'Czech Republic', 'Lottery / Gaming', 35.00, 2024, 2030),
+('PwC', 'UK', 'Consulting', 30.00, 2023, 2028),
+('Nestlé', 'Switzerland', 'Food & Beverage', 70.00, 2022, 2030),
+
+('Barilla', 'Italy', 'Food (Pasta)', 20.00, 2023, 2028),
+('Las Vegas Convention & Visitors Authority', 'USA', 'Tourism', 25.00, 2023, 2028),
+('Liqui Moly', 'Germany', 'Lubricants', 18.00, 2019, 2025),
+('Paramount+', 'USA', 'Streaming', 40.00, 2023, 2026),
+
+('Puma', 'Germany', 'Sportswear', 30.00, 2024, 2030),
+('Tata Communications', 'India', 'Telecom', 55.00, 2012, 2028),
+('Aggreko', 'UK', 'Energy Solutions', 22.00, 2017, 2026),
+('McDonald''s', 'USA', 'Fast Food', 85.00, 2023, 2030),
+('T-Mobile', 'Germany', 'Telecommunications', 45.00, 2023, 2028);
+
+--* 15. media broadcasters
+INSERT INTO media_broadcast_partners
+(partner_name, country, deal_value_million, contract_start, contract_end)
+VALUES
+('Sky Sports', 'UK', 1200.00, 2019, 2029),
+('ESPN', 'USA', 90.00, 2018, 2025),
+('Apple TV+', 'USA', 700.00, 2026, 2030),
+('DAZN', 'Spain', 70.00, 2021, 2026),
+('Canal+', 'France', 100.00, 2021, 2029),
+('Servus TV', 'Austria', 25.00, 2021, 2026),
+('ORF', 'Austria', 20.00, 2021, 2026),
+('Sky Deutschland', 'Germany', 85.00, 2021, 2027),
+('Viaplay', 'Netherlands', 60.00, 2022, 2029),
+('beIN Sports', 'Qatar', 80.00, 2016, 2028),
+('FanCode', 'India', 30.00, 2024, 2028),
+('SuperSport', 'South Africa', 35.00, 2019, 2026),
+('TSN', 'Canada', 40.00, 2019, 2026),
+('RDS', 'Canada', 35.00, 2019, 2026),
+('Bandeirantes', 'Brazil', 30.00, 2021, 2025);
+
+--& F1 prize money
+INSERT INTO f1_prize_money 
+(constructor_id, position_bonus_million, heritage_bonus_million, long_standing_bonus_million)
+VALUES
+(1, 118.80, 85.00, 27.00),
+(2, 137.70, 77.00, 63.00),
+(3, 128.20, 55.00, 19.70),
+(4, 147.10, 18.70, 0.00),
+(5, 109.30, 0.00, 0.00),
+(6, 99.90, 0.00, 0.00),
+(7, 73.00, 4.20, 0.00),
+(8, 82.00, 0.00, 0.00),
+(9, 91.50, 0.00, 0.00),
+(10, 63.10, 0.00, 0.00),
+(11, 0.00, 0.00, 0.00);
+
