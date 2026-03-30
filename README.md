@@ -13,6 +13,20 @@ This project builds a normalized relational database to represent those relation
 
 ---
 
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/0222735e-05a2-4655-873a-60f0e3ccc90d" />
+
+## 🔄 Project Pipeline
+
+| Stage | Description | File |
+|---|---|---|
+| 📌 Problem Domain | Map F1 commercial ecosystem — teams, sponsors, suppliers, contracts | — |
+| 🗃️ Schema Design | Design normalized relational database with 16 tables and 1 VIEW | `schema_design.sql` |
+| 🔍 Data Collection | Research real 2026 F1 season data from Forbes, Motorsport Week, RacingNews365 | — |
+| 💻 Data Insertion | Populate all tables with realistic financial and partnership data | `data_insertion.sql` |
+| 📊 Analysis & Insights | Business insight queries using JOINs, window functions, aggregations | `analysis.sql` |
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -48,7 +62,7 @@ The `constructors` table serves as the **central entity**. Every other table ref
 
 ## 📑 Schema Diagram
 
-<img src="Diagrams/schema _diagram.jpg" alt="Schema Diagram" width="600">
+<img src="Diagrams/schema _diagram.jpg" alt="Schema Diagram" width="700">
 
 ---
 
