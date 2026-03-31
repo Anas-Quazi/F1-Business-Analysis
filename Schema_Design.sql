@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS constructors (
     constructor_id INT AUTO_INCREMENT PRIMARY KEY,
     team_name VARCHAR(100) NOT NULL, 
     full_name VARCHAR(150),
-    nationality VARCHAR(50) NOT NULL,
-    founded_year YEAR,
+    country VARCHAR(50) NOT NULL,
     constructor_budget_million DECIMAL(10,2),
     category VARCHAR(50) DEFAULT 'Constructor',
     engine_supplier_id INT,
@@ -91,7 +90,7 @@ ADD FOREIGN KEY (fuel_supplier_id) REFERENCES fuel_suppliers(supplier_id);
 CREATE TABLE IF NOT EXISTS drivers (
     driver_id INT AUTO_INCREMENT PRIMARY KEY,
     driver_name VARCHAR(100) NOT NULL,
-    nationality VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL,
     constructor_id INT NOT NULL,
     salary_million DECIMAL(10,2),
     contract_start YEAR,
@@ -181,7 +180,7 @@ CREATE TABLE IF NOT EXISTS global_partners (
     contract_end YEAR
 );
 
---^ official suppliers
+--^ official suppliers 
 CREATE TABLE IF NOT EXISTS official_suppliers (
     supplier_id INT AUTO_INCREMENT PRIMARY KEY,
     supplier_name VARCHAR(100) NOT NULL,
@@ -216,30 +215,3 @@ CREATE TABLE IF NOT EXISTS f1_prize_money (
         (position_bonus_million + heritage_bonus_million + long_standing_bonus_million) STORED,
     FOREIGN KEY (constructor_id) REFERENCES constructors(constructor_id)
 );
-
-
---* View for team finances
-CREATE VIEW team_finances AS
-SELECT *,
-    (total_revenue - total_expenses) AS net_profit
-FROM (
-    SELECT
-        c.constructor_id,
-        c.team_name,
-
-        COALESCE((SELECT SUM(deal_value_million) FROM title_sponsors WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT SUM(deal_value_million) FROM principal_partners WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT SUM(deal_value_million) FROM team_partners WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT total_prize_million FROM f1_prize_money WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT SUM(ec.supply_fee_million) FROM engine_supply_contracts ec
-                  WHERE ec.supplier_id = (SELECT supplier_id FROM engine_supply_contracts WHERE constructor_id = c.constructor_id AND is_external = FALSE)
-                  AND ec.is_external = TRUE), 0) AS total_revenue,
-
-        COALESCE((SELECT SUM(salary_million) FROM drivers WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT management_cost_million FROM team_management WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT total_expense_million FROM factory_expenses WHERE constructor_id = c.constructor_id), 0) +
-        COALESCE((SELECT supply_fee_million FROM engine_supply_contracts WHERE constructor_id = c.constructor_id AND is_external = TRUE), 0) AS total_expenses
-
-    FROM constructors c
-) AS summary;
-

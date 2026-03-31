@@ -1,5 +1,5 @@
 --! ----------------------------------------------
---! Analysis & insights 
+--! Analysis & insights (foundation views)
 --! ----------------------------------------------
 
 --* team finances
