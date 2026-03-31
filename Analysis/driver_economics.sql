@@ -46,3 +46,17 @@ SELECT
 FROM drivers d
 GROUP BY d.country
 ORDER BY avg_salary DESC;
+
+--~ 5. ROI on driver salaries: correlation between top-paid drivers and team sponsorship revenue
+SELECT
+    c.team_name,
+    SUM(d.salary_million) AS total_driver_payroll,
+    sr.total_sponsorship_revenue,
+    ROUND(sr.total_sponsorship_revenue / NULLIF(SUM(d.salary_million), 0), 2) AS sponsorship_per_salary_dollar,
+    RANK() OVER (ORDER BY SUM(d.salary_million) DESC) AS driver_cost_rank,
+    RANK() OVER (ORDER BY sr.total_sponsorship_revenue DESC) AS sponsorship_rank
+FROM drivers d
+JOIN constructors c ON d.constructor_id = c.constructor_id
+JOIN sponsorship_revenue sr ON c.constructor_id = sr.constructor_id
+GROUP BY c.team_name, sr.total_sponsorship_revenue
+ORDER BY sponsorship_per_salary_dollar DESC;
