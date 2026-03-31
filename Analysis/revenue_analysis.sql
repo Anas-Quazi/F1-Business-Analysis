@@ -1,4 +1,8 @@
---^ 4. Total sponsorship revenue per team (with title sponsor % contribution)
+--!------------------------------------------------
+--! revenue analysis
+--!------------------------------------------------
+
+--* 1. Total sponsorship revenue per team (with title sponsor % contribution)
 SELECT
     team_name,
     title_revenue,
@@ -10,7 +14,7 @@ FROM sponsorship_revenue
 ORDER BY  title_sponsor_percentage DESC;
 
 
---^ 5. Teams ranked by total sponsorship income vs overall profitability
+--^ 2. Teams ranked by total sponsorship income vs overall profitability
 WITH RankedTeams AS (
     SELECT
         sr.team_name,
@@ -29,7 +33,7 @@ SELECT
 FROM RankedTeams
 ORDER BY rank_difference DESC;
 
---^ 6. Teams most dependent on a single sponsor
+--? 3. Teams most dependent on a single sponsor
 SELECT
     c.team_name,
     ts.sponsor_name,
@@ -42,7 +46,7 @@ JOIN constructors c ON ts.constructor_id = c.constructor_id
 JOIN sponsorship_revenue sr ON c.constructor_id = sr.constructor_id
 ORDER BY dependency_percentage DESC;
 
---^ 7. Expiring sponsorship contracts in next 2 years (2026-2027)
+--todo 4. Expiring sponsorship contracts in next 2 years (2026-2027)
 SELECT
     c.team_name,
     ts.sponsor_name AS sponsor,
@@ -74,7 +78,7 @@ JOIN constructors c ON tp.constructor_id = c.constructor_id
 WHERE tp.contract_end BETWEEN 2026 AND 2027
 ORDER BY contract_end, deal_value_million DESC;
 
---^ 8. Sponsorship value by industry/sector
+--& 5. Sponsorship value by industry/sector
 SELECT
     category AS industry,
     COUNT(*) AS number_of_deals,
@@ -90,7 +94,7 @@ FROM (
 GROUP BY category
 ORDER BY total_investment DESC;
 
---^ 9. Sponsorship value by industry/sector
+--~ 6. Sponsorship value by industry/sector
 SELECT
     country AS industry,
     COUNT(*) AS number_of_deals,
@@ -105,3 +109,5 @@ FROM (
 ) AS all_sponsors
 GROUP BY country
 ORDER BY total_investment DESC;
+
+
