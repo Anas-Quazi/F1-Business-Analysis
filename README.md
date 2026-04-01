@@ -7,9 +7,9 @@
 
 ## 📌 Overview
 
-Formula 1 is not just a sport — it is a multi-billion dollar business ecosystem. Each constructor operates as a commercial enterprise, managing relationships with engine suppliers, fuel partners, technology sponsors, AI partners, and a roster of high-value drivers.
+Formula 1 is not just a sport — it is a multi-billion dollar business ecosystem. Each constructor operates as a commercial enterprise, managing relationships with engine suppliers, fuel partners, title sponsors, global partners, and a roster of high-value drivers.
 
-This project builds a normalized relational database to represent those relationships, populated with realistic data from the 2024 F1 season, and uses SQL to extract meaningful business insights across the grid.
+This project builds a normalized relational database to represent those relationships, populated with realistic data from the 2026 F1 season, and uses SQL to extract meaningful business insights across the grid.
 
 ---
 
@@ -23,19 +23,33 @@ This project builds a normalized relational database to represent those relation
 | 🗃️ Schema Design | Design normalized relational database with 16 tables and 1 VIEW | `schema_design.sql` |
 | 🔍 Data Collection | Research real 2026 F1 season data from Forbes, Motorsport Week, RacingNews365 | — |
 | 💻 Data Insertion | Populate all tables with realistic financial and partnership data | `data_insertion.sql` |
-| 📊 Analysis & Insights | Business insight queries using JOINs, window functions, aggregations | `analysis.sql` |
+| 📊 Analysis & Insights | Business insight queries using JOINs, window functions, aggregations | `analysis\` |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-f1_business_analysis/
+F1-Business-Analysis/
 │
-├── schema_design.sql       # Entity definitions and relational constraints
-├── data_insertion.sql      # Realistic 2024 season data for all 10 constructors
-├── analysis.sql            # Business insight queries (JOINs, aggregations, window functions)
-└── README.md               # Project documentation
+├── schema_design.sql          # CREATE TABLE statements for all 17 tables 
+├── data_insertion.sql         # INSERT statements with real 2026 F1 season data
+│
+├── analysis/
+│   ├── 01_foundation_views.sql      # Base VIEWs (team_finance ,sponsorship_revenue, expense_breakdown)
+│   ├── 02_revenue_sponsorship.sql   # Revenue & sponsorship analysis queries
+│   ├── 03_cost_profitability.sql    # Cost, expenses & net profit queries
+│   ├── 04_driver_economics.sql      # Driver salaries, contracts & ROI
+│   ├── 05_supplier_network.sql      # Engine, fuel, tyre supplier analysis
+│   ├── 06_factory_efficiency.sql    # Factory costs & operational efficiency
+│   ├── 07_window_functions.sql      # Rankings, cumulative & percentile analysis
+│   └── 08_strategic_insights.sql   # M&A value, risk heatmap, dream team etc.
+│
+├── assets/
+│   └── schema_diagram.png     # ER diagram
+│
+├── README.md                  # Project documentation
+└── .gitignore                 # Ignored files
 ```
 
 ---
@@ -95,23 +109,34 @@ SOURCE analysis.sql;
 
 ## 📊 Business Insights Covered
 
-The `analysis.sql` file is designed to answer real business questions, including:
+Analysis is organized across **8 sections** in the `analysis/` folder:
 
-- 💰 Which constructor generates the highest total sponsorship revenue?
-- 🔧 Which engine supplier powers the most cars on the grid?
-- 📈 What is each team's estimated net profit/loss (total revenue vs. total expenses)?
-- 🌐 Which company has commercial partnerships with the most constructors?
-- 👨‍✈️ Which team carries the highest combined driver and principal payroll?
-- 📅 Which sponsorship or supply contracts are due to expire this season?
-- 🏆 How do teams rank by total partnership value using window functions?
+**💰 Revenue & Sponsorship Analysis**
+
+**📉 Cost & Profitability Analysis**
+
+**🏎️ Driver & Talent Economics**
+
+**🔧 Supplier & Partnership Network**
+
+**🏭 Factory & Operational Efficiency**
+
+**🌐 Window Function Analysis**
+
+**🎯 Strategic Business Insights**
 
 ---
 
 ## 📝 Data Notes
 
-Financial figures — including sponsorship deal values, engine supply fees, driver salaries, and operational costs — are approximations based on publicly available estimates from sources such as **Forbes**, **Motorsport Week**, and **RacingNews365**. Official figures are not publicly disclosed by teams or commercial partners.
+Financial figures — including sponsorship deal values, engine supply fees, driver 
+salaries, and operational costs — are based on publicly available estimates and 
+approximations sourced from **Forbes**, **Motorsport Week**, **RacingNews365**, and 
+**official team websites**. Exact figures are not publicly disclosed by teams or 
+commercial partners. Data accuracy is estimated at **70–80%** and is intended for 
+analytical and educational purposes only.
 
-All data reflects the **2024 Formula 1 season**.
+All data reflects the **2026 Formula 1 season**.
 
 ---
 
@@ -119,12 +144,15 @@ All data reflects the **2024 Formula 1 season**.
 
 | Category | Details |
 |---|---|
-| **Database** | MySQL |
-| **Schema Design** | Normalization, primary keys, foreign keys, constraints |
-| **Data Manipulation** | DDL (CREATE, DROP), DML (INSERT, UPDATE) |
-| **Querying** | INNER JOIN, LEFT JOIN, GROUP BY, HAVING, subqueries |
-| **Advanced SQL** | Window functions — RANK(), SUM() OVER(), ROW_NUMBER() |
-| **Business Analysis** | Revenue vs. expense modelling, partner network mapping |
+| **Database** | MySQL 8.0 |
+| **Schema Design** | Normalization, primary keys, foreign keys, composite keys, constraints, ALTER TABLE |
+| **Data Manipulation** | DDL (CREATE, DROP, ALTER), DML (INSERT, UPDATE) |
+| **Querying** | INNER JOIN, LEFT JOIN, GROUP BY, HAVING, UNION ALL, subqueries, COALESCE, NULLIF |
+| **Advanced SQL** | Window functions — RANK(), SUM() OVER(), NTILE(), ROW_NUMBER(), cumulative aggregates |
+| **Views** | CREATE VIEW, foundation views, nested views |
+| **Business Analysis** | Revenue vs expense modelling, partner network mapping, risk analysis, M&A valuation |
+| **Tools Used** | MySQL Workbench, Luna Modeler, VS Code, Git & GitHub |
+| **AI Assistant** | Claude (Anthropic) — schema design guidance, query logic, data research |
 
 ---
 
