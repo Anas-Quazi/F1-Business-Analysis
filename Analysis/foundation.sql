@@ -3,6 +3,30 @@
 --! ----------------------------------------------
 
 --* team finances
+CREATE VIEW team_finances AS
+SELECT *,
+    (total_revenue - total_expenses) AS net_profit
+FROM (
+    SELECT
+        c.constructor_id,
+        c.team_name,
+
+        COALESCE((SELECT SUM(deal_value_million) FROM title_sponsors WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT SUM(deal_value_million) FROM principal_partners WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT SUM(deal_value_million) FROM team_partners WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT total_prize_million FROM f1_prize_money WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT SUM(ec.supply_fee_million) FROM engine_supply_contracts ec
+                  WHERE ec.supplier_id = (SELECT supplier_id FROM engine_supply_contracts WHERE constructor_id = c.constructor_id AND is_external = FALSE)
+                  AND ec.is_external = TRUE), 0) AS total_revenue,
+
+        COALESCE((SELECT SUM(salary_million) FROM drivers WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT management_cost_million FROM team_management WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT total_expense_million FROM factory_expenses WHERE constructor_id = c.constructor_id), 0) +
+        COALESCE((SELECT supply_fee_million FROM engine_supply_contracts WHERE constructor_id = c.constructor_id AND is_external = TRUE), 0) AS total_expenses
+
+    FROM constructors c
+) AS summary;
+
 SELECT * FROM team_finances
 ORDER BY net_profit DESC;
 
